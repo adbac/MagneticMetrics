@@ -1,12 +1,15 @@
 """
-v.1.003
+v.2.000
 
 Observer to make sidebearings magnetic to outline modifications.  
 Its aim to be used as a startup script so it can be activated and deactivated whenever you need.
 
 Version history:
-    v1.002: first private release
-    v1.003: fix magnet multiple drawing
+    Adrien Bachelart:
+    - v2.000: Use Subscriber instead of observers and merz instead of mojo.drawingTools
+    ProductionType:
+    - v1.002: first private release
+    - v1.003: fix magnet multiple drawing
 
 """
 
