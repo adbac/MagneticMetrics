@@ -74,17 +74,19 @@ class MagneticMetricsSubscriber(Subscriber):
 
         magnetScale = .3
 
+        yPosition = CurrentFont().info.capHeight / 2
+
         self.magnetsLayer = glyphEditor.extensionContainer("com.adbac.MagneticMargins")
         self.magnetsLayer.setVisible(False)
         self.leftMagnet = self.magnetsLayer.appendSymbolSublayer(
-            position=(0, 0),
+            position=(0, yPosition),
             imageSettings=dict(
                 name="com.adbac.MagneticMargins.magnet",
                 scale=magnetScale,
             )
         )
         self.rightMagnet = self.magnetsLayer.appendSymbolSublayer(
-            position=(0, 0),
+            position=(info["glyph"].width, yPosition),
             imageSettings=dict(
                 name="com.adbac.MagneticMargins.magnet",
                 scale=magnetScale,
@@ -110,6 +112,8 @@ class MagneticMetricsSubscriber(Subscriber):
         self.rightMargin = self.glyph.rightMargin
         self.updateMagnetsPosition()
 
+    glyphEditorGlyphDidChangeContoursDelay = 0.01
+
     def glyphEditorGlyphDidChangeContours(self, info):
         if self.status == 0:
             self.leftMargin = self.glyph.leftMargin
@@ -123,7 +127,6 @@ class MagneticMetricsSubscriber(Subscriber):
 
     def updateMagnetsPosition(self):
         yPosition = CurrentFont().info.capHeight / 2
-        self.leftMagnet.setPosition((0, yPosition))
         self.rightMagnet.setPosition((self.glyph.width, yPosition))
 
 registerGlyphEditorSubscriber(MagneticMetricsSubscriber)
